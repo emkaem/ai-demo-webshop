@@ -36,23 +36,13 @@
         </nav>
       </div>
     </header>
-    <main id="main-content" role="main">
-      <div class="content-box" style="text-align: center">
-        <div style="font-size: 4rem" role="img" aria-label="Apple emoji">
-          🍏
-        </div>
+    <main id="main-content" role="main" class="animate-fadeInUp">
+      <div class="content-box animate-fadeInUp" style="text-align: center">
+        <div style="font-size: 4rem" role="img" aria-label="Apple emoji" class="animate-popIn">🍏</div>
         <h1>Apple</h1>
-        <div class="product-desc" aria-label="Product description">
-          Keeps the doctor away (unless you throw it at them).
-        </div>
+        <div class="product-desc" aria-label="Product description">Keeps the doctor away (unless you throw it at them).</div>
         <div style="margin-top: 1.2rem">
-          <button
-            id="addToBasket"
-            class="cart-action-btn"
-            aria-label="Add Apple to basket"
-          >
-            Add to Basket
-          </button>
+          <button id="addToBasket" class="cart-action-btn" aria-label="Add Apple to basket">Add to Basket</button>
         </div>
       </div>
     </main>
@@ -68,7 +58,12 @@
         addToBasket("apple");
         updateAppleButton();
       };
-      document.addEventListener("DOMContentLoaded", updateAppleButton);
+      document.addEventListener("DOMContentLoaded", function() {
+        updateAppleButton();
+        document.getElementById('main-content').classList.add('animate-fadeInUp');
+        document.querySelector('.content-box').classList.add('animate-fadeInUp');
+        document.querySelector('[role="img"]').classList.add('animate-popIn');
+      });
     </script>
   </body>
 </html>

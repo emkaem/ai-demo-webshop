@@ -36,8 +36,8 @@
         </nav>
       </div>
     </header>
-    <main id="main-content" role="main">
-      <div class="content-box">
+    <main id="main-content" role="main" class="animate-fadeInUp">
+      <div class="content-box animate-fadeInUp">
         <h1>Your Shopping Basket</h1>
         <ul
           class="order-list"
@@ -60,6 +60,21 @@
     </main>
     <script src="shop.js"></script>
     <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('main-content').classList.add('animate-fadeInUp');
+        document.querySelector('.content-box').classList.add('animate-fadeInUp');
+      });
+      // Animate basket indicator on update
+      const origRenderBasketIndicator = window.renderBasketIndicator;
+      window.renderBasketIndicator = function() {
+        origRenderBasketIndicator();
+        const indicator = document.querySelector('.basket-indicator');
+        if (indicator) {
+          indicator.classList.remove('animate-popIn');
+          void indicator.offsetWidth; // force reflow
+          indicator.classList.add('animate-popIn');
+        }
+      };
       renderBasket();
       document.getElementById("clearBasket").onclick = function () {
         clearBasket();

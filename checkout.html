@@ -36,8 +36,8 @@
         </nav>
       </div>
     </header>
-    <main id="main-content" role="main">
-      <div class="content-box">
+    <main id="main-content" role="main" class="animate-fadeInUp">
+      <div class="content-box animate-fadeInUp">
         <h1>Checkout</h1>
         <form id="checkoutForm" role="form" aria-label="Checkout form">
           <div class="form-group">
@@ -75,9 +75,7 @@
           style="display: none; color: green; margin-top: 1rem"
           role="alert"
           aria-live="polite"
-        >
-          Thank you for your order!
-        </div>
+        ></div>
       </div>
     </main>
     <script src="shop.js"></script>
@@ -85,11 +83,18 @@
       renderBasket();
       document.getElementById("checkoutForm").onsubmit = function (e) {
         e.preventDefault();
-        document.getElementById("successMsg").style.display = "block";
+        const msg = document.getElementById("successMsg");
+        msg.textContent = "Thank you for your order!";
+        msg.style.display = "block";
+        msg.classList.add("animate-fadeInUp");
         document.getElementById("checkoutForm").style.display = "none";
         clearBasket();
         renderBasket();
       };
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("main-content").classList.add("animate-fadeInUp");
+        document.querySelector(".content-box").classList.add("animate-fadeInUp");
+      });
     </script>
   </body>
 </html>

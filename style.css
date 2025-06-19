@@ -69,7 +69,7 @@ button {
   font-size: 1.1rem;
   font-weight: 700;
   box-shadow: 0 2px 8px rgba(255, 167, 81, 0.12);
-  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s, filter 0.2s;
   letter-spacing: 0.5px;
 }
 button:hover {
@@ -77,6 +77,10 @@ button:hover {
   color: #a85c00;
   box-shadow: 0 4px 16px rgba(255, 167, 81, 0.18);
   transform: scale(1.04);
+}
+button:active {
+  filter: brightness(0.95) saturate(1.2);
+  transform: scale(0.97);
 }
 input[type="text"] {
   padding: 0.5rem 0.8rem;
@@ -104,6 +108,10 @@ input[type="text"]:focus {
   background: #f7faff;
   border-radius: 8px;
   padding: 0.7rem 1.1rem;
+  transition: box-shadow 0.25s cubic-bezier(0.4,0.2,0.2,1), transform 0.25s cubic-bezier(0.4,0.2,0.2,1);
+}
+.order-list li:hover {
+  background: #eaf2ff;
 }
 .logo-img,
 .basket-img {
@@ -212,12 +220,16 @@ input[type="text"]:focus {
   border-radius: 18px;
   font-size: 4rem;
   text-decoration: none;
-  transition: box-shadow 0.18s, transform 0.18s;
+  transition: box-shadow 0.18s, transform 0.18s, filter 0.18s;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 .emoji-box:hover {
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
   transform: scale(1.07);
+}
+.emoji-box:active {
+  filter: brightness(1.1) saturate(1.2);
+  transform: scale(0.95);
 }
 .content-box {
   width: 530px; /* or use calc(3 * 150px + 2 * 2.5rem) */
@@ -229,6 +241,7 @@ input[type="text"]:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: box-shadow 0.25s cubic-bezier(0.4,0.2,0.2,1), transform 0.25s cubic-bezier(0.4,0.2,0.2,1);
 }
 .basket-indicator {
   position: absolute;
@@ -275,7 +288,7 @@ input[type="text"]:focus {
   font-weight: 700;
   font-size: 1.1rem;
   box-shadow: 0 2px 8px rgba(229, 57, 53, 0.18);
-  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s, filter 0.2s;
   letter-spacing: 0.5px;
 }
 .cart-action-btn:hover,
@@ -284,6 +297,11 @@ input[type="text"]:focus {
   color: #fff;
   box-shadow: 0 4px 16px rgba(229, 57, 53, 0.22);
   transform: scale(1.04);
+}
+.cart-action-btn:active,
+.cart-buttons-row button:active {
+  filter: brightness(0.95) saturate(1.2);
+  transform: scale(0.97);
 }
 .form-group {
   margin-bottom: 1.5rem;
@@ -305,4 +323,62 @@ input[type="text"]:focus {
   border-color: #0077ff;
   outline: none;
   box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.1);
+}
+
+/* --- Animations --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.7s cubic-bezier(0.4,0.2,0.2,1) both;
+}
+.animate-fadeIn {
+  animation: fadeIn 0.7s cubic-bezier(0.4,0.2,0.2,1) both;
+}
+.animate-popIn {
+  animation: popIn 0.5s cubic-bezier(0.4,0.2,0.2,1) both;
+}
+.animate-bounce {
+  animation: bounce 0.5s cubic-bezier(0.4,0.2,0.2,1);
+}
+
+/* Success message animation */
+#successMsg.animate-fadeInUp {
+  display: block !important;
+}
+
+/* Basket indicator pop effect */
+.basket-indicator.animate-popIn {
+  z-index: 10;
 }
