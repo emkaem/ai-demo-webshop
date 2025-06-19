@@ -11,6 +11,8 @@ function getBasket() {
 
 function addToBasket(product) {
   const basket = getBasket();
+  const count = basket.filter((p) => p === product).length;
+  if (count >= 3) return; // Enforce max 3 per product
   basket.push(product);
   localStorage.setItem("basket", JSON.stringify(basket));
 }
@@ -30,11 +32,16 @@ function renderBasket() {
     if (cartButtonsRow) cartButtonsRow.style.display = "none";
     return;
   }
+  // Count items per product
+  const counts = {};
   basket.forEach((product) => {
+    counts[product] = (counts[product] || 0) + 1;
+  });
+  Object.keys(counts).forEach((product) => {
     const item = PRODUCTS[product];
     if (item) {
       const li = document.createElement("li");
-      li.innerHTML = `<span class='basket-emoji'>${item.emoji}</span> <span>${item.name}</span>`;
+      li.innerHTML = `<span class='basket-emoji'>${item.emoji}</span> <span>${item.name}</span> <span style='font-weight: bold'>(x${counts[product]})</span>`;
       basketList.appendChild(li);
     }
   });
@@ -77,3 +84,10 @@ window.clearBasket = function () {
   origClearBasket();
   renderBasketIndicator();
 };
+
+// Utility to get count of a product in basket
+function getProductCount(product) {
+  const basket = getBasket();
+  return basket.filter((p) => p === product).length;
+}
+window.getProductCount = getProductCount;
