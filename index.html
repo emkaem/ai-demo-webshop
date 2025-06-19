@@ -36,13 +36,13 @@
         </nav>
       </div>
     </header>
-    <main id="main-content" role="main">
+    <main id="main-content" role="main" class="animate-fadeInUp">
       <h1 class="products-title">Products</h1>
       <ul class="emoji-list" role="list" aria-label="Product list">
         <li>
           <a
             href="product-apple.html"
-            class="emoji-box"
+            class="emoji-box animate-popIn"
             aria-label="View Apple product details"
             >🍏</a
           >
@@ -51,7 +51,7 @@
         <li>
           <a
             href="product-banana.html"
-            class="emoji-box"
+            class="emoji-box animate-popIn"
             aria-label="View Banana product details"
             >🍌</a
           >
@@ -60,7 +60,7 @@
         <li>
           <a
             href="product-lemon.html"
-            class="emoji-box"
+            class="emoji-box animate-popIn"
             aria-label="View Lemon product details"
             >🍋</a
           >
@@ -69,5 +69,13 @@
       </ul>
     </main>
     <script src="shop.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('main-content').classList.add('animate-fadeInUp');
+        document.querySelectorAll('.emoji-box').forEach((el, i) => {
+          setTimeout(() => el.classList.add('animate-popIn'), 100 + i * 120);
+        });
+      });
+    </script>
   </body>
 </html>
