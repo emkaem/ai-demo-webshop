@@ -58,9 +58,17 @@
     </main>
     <script src="shop.js"></script>
     <script>
+      function updateLemonButton() {
+        const btn = document.getElementById("addToBasket");
+        const count = window.getProductCount ? window.getProductCount("lemon") : 0;
+        btn.textContent = `Add to Basket${count > 0 ? ` (x${count})` : ''}`;
+        btn.disabled = count >= 3;
+      }
       document.getElementById("addToBasket").onclick = function () {
         addToBasket("lemon");
+        updateLemonButton();
       };
+      document.addEventListener("DOMContentLoaded", updateLemonButton);
     </script>
   </body>
 </html>
